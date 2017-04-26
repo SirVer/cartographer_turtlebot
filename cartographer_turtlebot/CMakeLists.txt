@@ -22,7 +22,7 @@ set(PACKAGE_DEPENDENCIES
   roslib
   sensor_msgs
 )
-
+set(ROS_BUILD_TYPE Debug)
 find_package(cartographer REQUIRED)
 include("${CARTOGRAPHER_CMAKE_DIR}/functions.cmake")
 google_initialize_cartographer_project()

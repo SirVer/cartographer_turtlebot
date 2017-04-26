@@ -16,10 +16,10 @@ include "map_builder.lua"
 
 options = {
   map_builder = MAP_BUILDER,
-  map_frame = "map",
-  tracking_frame = "gyro_link",
-  published_frame = "odom",
-  odom_frame = "odom",
+  map_frame = "turtlebot_tf/map",
+  tracking_frame = "turtlebot_tf/gyro_link",
+  published_frame = "turtlebot_tf/odom",
+  odom_frame = "turtlebot_tf/odom",
   provide_odom_frame = false,
   use_odometry = true,
   use_laser_scan = true,
@@ -35,7 +35,7 @@ MAP_BUILDER.use_trajectory_builder_2d = true
 TRAJECTORY_BUILDER_2D.laser_min_range = 0.1
 TRAJECTORY_BUILDER_2D.laser_max_range = 8.
 TRAJECTORY_BUILDER_2D.laser_missing_echo_ray_length = 5.
-TRAJECTORY_BUILDER_2D.use_imu_data = true
+TRAJECTORY_BUILDER_2D.use_imu_data = false
 TRAJECTORY_BUILDER_2D.use_online_correlative_scan_matching = true
 TRAJECTORY_BUILDER_2D.motion_filter.max_angle_radians = math.rad(0.1)
 
