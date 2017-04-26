@@ -24,5 +24,7 @@
   </include>
 
   <node name="playbag" pkg="rosbag" type="play"
-      args="$(arg bag_filename)" />
+    args="-r4 --clock $(arg bag_filename) --topics /turtlebot/hokuyo_node/scan /tf_static /tf" >
+      <remap from="tf" to="tf_in" />
+    </node>
 </launch>

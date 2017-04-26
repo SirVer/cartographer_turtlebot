@@ -16,12 +16,12 @@ include "map_builder.lua"
 
 options = {
   map_builder = MAP_BUILDER,
-  map_frame = "turtlebot_tf/map",
+  map_frame = "map",
   tracking_frame = "turtlebot_tf/gyro_link",
   published_frame = "turtlebot_tf/odom",
   odom_frame = "turtlebot_tf/odom",
   provide_odom_frame = false,
-  use_odometry = true,
+  use_odometry = false,
   use_laser_scan = true,
   use_multi_echo_laser_scan = false,
   num_point_clouds = 0,

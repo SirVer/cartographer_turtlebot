@@ -15,6 +15,7 @@
 -->
 
 <launch>
+  <param name="/use_sim_time" value="true" />
   <arg name="configuration_basename" />
 
   <node name="cartographer_node" pkg="cartographer_ros"
@@ -22,10 +23,20 @@
           -configuration_directory
               $(find cartographer_turtlebot)/configuration_files
           -configuration_basename $(arg configuration_basename)"
-      output="screen" launch-prefix="xterm -e gdb --args">
-    <remap from="points2" to="/turtlebot/camera/depth/points" />
+      output="screen" >
+    <!-- <remap from="points2" to="/turtlebot/camera/depth/points" /> -->
     <remap from="scan" to="/turtlebot/hokuyo_node/scan"/>
-    <remap from="odom" to="/turtlebot/mobile_base/odom"/>
+    <!-- <remap from="odom" to="/turtlebot/mobile_base/odom"/> -->
+  </node>
+
+  <node name="tf_remove_frames" pkg="cartographer_ros"
+      type="tf_remove_frames.py">
+    <remap from="tf_out" to="/tf" />
+    <rosparam param="remove_frames">
+      - map
+      - turtlebot_tf/map
+      - odom_combined
+    </rosparam>
   </node>
 
   <node name="flat_world_imu_node" pkg="cartographer_turtlebot"
@@ -33,4 +44,7 @@
     <remap from="imu_in" to="/turtlebot/mobile_base/sensors/imu_data" />
     <remap from="imu_out" to="/imu" />
   </node>
+  <node name="rviz" pkg="rviz" type="rviz" required="true"
+      args="-d $(find cartographer_turtlebot
+          )/configuration_files/demo_turtlebot.rviz" />
 </launch>
