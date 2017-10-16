@@ -23,7 +23,6 @@
               $(find cartographer_turtlebot)/configuration_files
           -configuration_basename turtlebot_urg_lidar_2d.lua"
       output="screen">
-    <remap from="scan" to="/laser_scan" />
   </node>
 
   <node name="flat_world_imu_node" pkg="cartographer_turtlebot"
@@ -35,8 +34,20 @@
   <node name="rviz" pkg="rviz" type="rviz" required="true"
       args="-d $(find cartographer_turtlebot
           )/configuration_files/demo_turtlebot.rviz" />
+
   <node name="playbag" pkg="rosbag" type="play"
-      args="--clock $(arg bag_filename)" />
+    args="--clock --bags $(arg bag_filename) -r 3 --topics /scan /odom /mobile_base/sensors/imu_data_raw /tf /tf_static" >
+    <remap from="tf" to="tf_in" />
+  </node>
+
+  <node name="tf_remove_frames" pkg="cartographer_ros"
+      type="tf_remove_frames.py">
+    <remap from="tf_out" to="/tf" />
+    <rosparam param="remove_frames">
+      - map
+      - odom_combined
+    </rosparam>
+  </node>
 
   <node name="cartographer_occupancy_grid_node" pkg="cartographer_ros"
       type="cartographer_occupancy_grid_node" args="-resolution 0.05" />
