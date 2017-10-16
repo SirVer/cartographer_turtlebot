@@ -15,8 +15,8 @@
 include "map_builder.lua"
 include "trajectory_builder.lua"
 
-NUM_SUBDIVISIONS = 20
-SUBMAP_SIZE = 60
+NUM_SUBDIVISIONS = 40
+SUBMAP_SIZE = 120
 
 options = {
   map_builder = MAP_BUILDER,

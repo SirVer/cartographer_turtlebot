@@ -36,7 +36,7 @@
           )/configuration_files/demo_turtlebot.rviz" />
 
   <node name="playbag" pkg="rosbag" type="play"
-    args="--clock --bags $(arg bag_filename) -r 3 --topics /scan /odom /mobile_base/sensors/imu_data_raw /tf /tf_static" >
+    args="--clock --bags $(arg bag_filename) --topics /scan /odom /mobile_base/sensors/imu_data_raw /tf /tf_static" >
     <remap from="tf" to="tf_in" />
   </node>
 
