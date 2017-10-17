@@ -28,6 +28,7 @@
        axis, set the z-distance from the base_footprint
        to 0.352.
       -->
+
   <joint name="base_joint" type="fixed">
     <origin rpy="0 0 0" xyz="0 0 0.0102"/>
     <parent link="base_footprint"/>
